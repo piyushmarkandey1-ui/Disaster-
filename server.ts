@@ -1,6 +1,5 @@
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 import {
   initDb,
   getIncidents,
@@ -152,6 +151,7 @@ app.get("/api/hospitals", async (req, res) => {
 if (process.env.NODE_ENV !== "production" && process.env.VERCEL !== "1") {
   // Integrations for Vite and Static Site routing (Local Dev)
   (async () => {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
