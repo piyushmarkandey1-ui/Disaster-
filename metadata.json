@@ -1,0 +1,6 @@
+{
+  "name": "RescueAI",
+  "description": "AI-powered disaster response platform for emergency reporting and prioritized emergency dispatch routing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
