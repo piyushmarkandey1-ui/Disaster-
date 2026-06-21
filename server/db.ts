@@ -3,7 +3,7 @@ import { existsSync, mkdirSync } from 'fs';
 import path from 'path';
 import { Incident, Shelter, Hospital } from '../src/types';
 
-const DB_DIR = path.resolve('./data');
+const DB_DIR = process.env.VERCEL ? '/tmp' : path.resolve('./data');
 const DB_FILE = path.join(DB_DIR, 'rescue_ai_db.json');
 
 interface Schema {
