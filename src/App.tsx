@@ -178,8 +178,8 @@ export default function App() {
           </div>
         </div>
 
-        {/* NAVIGATION TAB CONTROLLERS */}
-        <nav className="flex flex-wrap items-center gap-2 bg-slate-950/50 backdrop-blur-md border border-slate-800/60 p-1.5 rounded-2xl shadow-inner">
+        {/* DESKTOP NAVIGATION TAB CONTROLLERS */}
+        <nav className="hidden md:flex flex-wrap items-center gap-2 bg-slate-950/50 backdrop-blur-md border border-slate-800/60 p-1.5 rounded-2xl shadow-inner">
           <NavButton id="map" icon={Map} label={t.navMap} accent="orange" />
           <NavButton id="report" icon={AlertTriangle} label={t.navReport} accent="rose" />
           <NavButton id="dashboard" icon={BarChart3} label={t.navDashboard} accent="blue" />
@@ -198,7 +198,7 @@ export default function App() {
       </header>
 
       {/* RENDER ACTIVE TAB WITH MOTION */}
-      <main className="flex-1 w-full max-w-[1400px] mx-auto p-4 md:p-6 lg:p-8 z-10">
+      <main className="flex-1 w-full max-w-[1400px] mx-auto p-4 md:p-6 lg:p-8 pb-24 md:pb-8 z-10">
         <AnimatePresence mode="wait">
           {errorMsg && (
             <motion.div 
@@ -222,7 +222,7 @@ export default function App() {
             >
               <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 xl:gap-8">
                 {/* Full size Leaflet map (takes 3 grid modules) */}
-                <div className="xl:col-span-3 h-[600px] md:h-[700px] xl:h-[800px] rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border border-slate-800/80 relative bg-slate-900/50">
+                <div className="xl:col-span-3 h-[50vh] md:h-[700px] xl:h-[800px] rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border border-slate-800/80 relative bg-slate-900/50">
                   <DisasterMap
                     incidents={incidents}
                     shelters={shelters}
@@ -334,13 +334,39 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      {/* FOOTER METRICS BAR */}
-      <footer className="bg-slate-950/80 backdrop-blur-md border-t border-slate-900 py-4 px-4 text-center text-slate-500 text-[10.5px] relative z-10">
+      {/* FOOTER METRICS BAR (Hidden on mobile to save space for nav) */}
+      <footer className="hidden md:block bg-slate-950/80 backdrop-blur-md border-t border-slate-900 py-4 px-4 text-center text-slate-500 text-[10.5px] relative z-10">
         <div className="flex items-center justify-center gap-1.5 font-medium tracking-wide">
           <MessageSquareHeart className="w-3.5 h-3.5 text-rose-500 animate-pulse" />
           <span>{t.footerTag}</span>
         </div>
       </footer>
+
+      {/* MOBILE BOTTOM NAVIGATION BAR */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900/85 backdrop-blur-xl border-t border-slate-800/80 z-[200] pb-safe">
+        <div className="flex items-center justify-around p-2">
+          <button onClick={() => setActiveTab('map')} className={`flex flex-col items-center gap-1 p-2 ${activeTab === 'map' ? 'text-orange-400' : 'text-slate-500 hover:text-slate-400'}`}>
+            <Map className="w-6 h-6" />
+            <span className="text-[10px] font-bold">Map</span>
+          </button>
+          <button onClick={() => setActiveTab('report')} className={`flex flex-col items-center gap-1 p-2 ${activeTab === 'report' ? 'text-rose-400' : 'text-slate-500 hover:text-slate-400'}`}>
+            <AlertTriangle className="w-6 h-6" />
+            <span className="text-[10px] font-bold">SOS</span>
+          </button>
+          <button onClick={() => setActiveTab('dashboard')} className={`flex flex-col items-center gap-1 p-2 ${activeTab === 'dashboard' ? 'text-blue-400' : 'text-slate-500 hover:text-slate-400'}`}>
+            <BarChart3 className="w-6 h-6" />
+            <span className="text-[10px] font-bold">Dashboard</span>
+          </button>
+          <button onClick={() => setActiveTab('shelters')} className={`flex flex-col items-center gap-1 p-2 ${activeTab === 'shelters' ? 'text-emerald-400' : 'text-slate-500 hover:text-slate-400'}`}>
+            <Home className="w-6 h-6" />
+            <span className="text-[10px] font-bold">Shelters</span>
+          </button>
+          <button onClick={() => setActiveTab('help')} className={`flex flex-col items-center gap-1 p-2 ${activeTab === 'help' ? 'text-purple-400' : 'text-slate-500 hover:text-slate-400'}`}>
+            <BookOpen className="w-6 h-6" />
+            <span className="text-[10px] font-bold">Help</span>
+          </button>
+        </div>
+      </nav>
     </div>
   );
 }
