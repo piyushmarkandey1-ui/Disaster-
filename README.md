@@ -1,5 +1,7 @@
 # 🚨 RescueAI - AI-Powered Disaster Response Coordination Core 🚨
 
+**🌐 Live Demo:** [https://disaster-app-kappa.vercel.app](https://disaster-app-kappa.vercel.app)
+
 RescueAI is a high-fidelity, real-time crisis response portal built for Hackathons and production readiness. It bridges the critical communication gap during devastating crises, allowing citizens to broadcast secure geographic emergency alarms and authorizing rescue teams (such as the National Disaster Response Force - NDRF) to automatically filter, prioritize, coordinate, and complete live rescues with server-side AI assistance.
 
 ---
